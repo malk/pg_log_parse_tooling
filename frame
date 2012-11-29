@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use pg_csv_log_parser;
+use pg_csv_log_filters;
+
+
+my $from = field_has LOG_TIME, '\d{4}-\d{2}-\d{2} ' . shift @ARGV;
+my $to = field_has LOG_TIME, '\d{4}-\d{2}-\d{2} ' . shift @ARGV;
+
+iterate collect output, stopgag $to, head_cut $from, input;
+

@@ -1,4 +1,5 @@
-pg_log_parse_tooling
-====================
+# pg_log_parse_tooling
 
-some small perl scripts I created to help me grok PostgreSQL logs.
+Framework of scripts to grok PostgreSQL logs.
+
+

@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use pg_csv_log_parser;
+use pg_csv_log_filters;
+
+my @per_hour = ();
+my @hours = ();
+foreach my $i (0..23) {
+	$hours[$i] = sprintf("%02d", $i);
+	$per_hour[$hours[$i]] = 0;
+}
+
+my $label = shift || 'occurrences';
+
+sub hourly {
+	my $per_hour = shift;
+	return sub {
+		my $x = shift;
+		$x->[LOG_TIME]
+			&& $x->[LOG_TIME] =~ /\d{4}-\d{2}-\d{2} (\d{2})/
+				&& $per_hour->[$1]++;
+		return $x;
+	};
+}
+
+my $hourly = hourly \@per_hour;
+
+iterate collect $hourly, input;
+
+my $output = output;
+
+my @line = ("Hour", $label);
+$output->(\@line);
+
+foreach my $i (0..23) {
+	@line = (shift @hours, shift @per_hour);
+	$output->(\@line);
+}

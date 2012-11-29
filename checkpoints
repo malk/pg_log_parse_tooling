@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use pg_csv_log_parser;
+use pg_csv_log_filters;
+
+my @patterns = (qr/checkpoints/i);
+
+my $calls_is_not_null = has_table \@patterns;
+
+iterate collect output, filter $calls_is_not_null, input;
+
+
