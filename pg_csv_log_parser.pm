@@ -5,7 +5,6 @@ use warnings;
 use strict;
 use Text::CSV;
 use Test::Extreme;
-use SQL::Statement;
 
 use vars qw($VERSION @ISA @EXPORT);
 
@@ -50,7 +49,6 @@ require Exporter;
 		  reduce
 		  count_if
 		  multi_reduce
-		  query_parser
 		  filter_query
 		  linear_open
 		  input
@@ -357,23 +355,6 @@ sub test_extract_table_from_query {
 	@expected = ('groupe', 'utilisateur', 'fco_etat_fiche', 'fco_fiche' , 'fco_priorite', 'fco_categorie');
 	eval { assert_equals_sequences shifter(@actual), shifter(@expected) } ; assert_passed;
 }
-
-sub query_parser() {
-	my $parser = SQL::Parser->new();
-	return sub {
-		my $query = shift;
-		return $query ? SQL::Statement->new($query, $parser) : undef;
-	};
-}
-
-sub test_query_parser {
-	my @expected = ('matab', 'maothertab');
-	my $parser = query_parser;
-	my $query = $parser->('SELECT field FROM matab JOIN maothertab WHERE fff=1');
-	my @actual = map {$_->name} $query->tables();
-	eval { assert_equals(@expected, @actual);} ; assert_passed;
-}
-
 
 sub fields_with_queries() {
 	return (QUERY, INTERNAL_QUERY, MESSAGE, CONTEXT);
