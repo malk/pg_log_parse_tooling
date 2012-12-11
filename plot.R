@@ -1,5 +1,5 @@
 #!/usr/bin/Rscript
-dd <- read.table('/tmp/deadlocks_vs_timeouts.csv', header=T, sep=",")
+dd <- read.table('/tmp/to.csv', header=T, sep=",")
 
 max_y <- max(dd)
 

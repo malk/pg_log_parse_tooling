@@ -376,7 +376,7 @@ sub test_query_parser {
 
 
 sub fields_with_queries() {
-	return (QUERY, INTERNAL_QUERY, MESSAGE);
+	return (QUERY, INTERNAL_QUERY, MESSAGE, CONTEXT);
 }
 
 sub queries($) {my $x = shift;

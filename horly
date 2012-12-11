@@ -34,6 +34,6 @@ my @line = ("Hour", $label);
 $output->(\@line);
 
 foreach my $i (0..23) {
-	@line = (shift @hours, shift @per_hour);
+	@line = (shift @per_hour);
 	$output->(\@line);
 }
