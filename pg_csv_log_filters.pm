@@ -3,7 +3,7 @@ package pg_csv_log_filters;
 
 use warnings;
 use strict;
-use Test::Extreme;
+
 use pg_csv_log_parser;
 use vars qw($VERSION @ISA @EXPORT);
 
