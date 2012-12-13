@@ -1,16 +1,3 @@
-#!/usr/bin/perl
-use warnings;
-use strict;
-use pg_csv_log_parser;
-use pg_csv_log_filters;
-
-my @patterns = (qr/checkpoints/i);
-
-my $calls_is_not_null = has_table \@patterns;
-
-iterate collect output, filter $calls_is_not_null, input;
-
-
 # Copyright 2012 Romeu Moura
 # This file is part of pg_log_parse_tooling. pg_Log_Parse_Tooling is
 # free software: you can redistribute it and/or modify it under the
