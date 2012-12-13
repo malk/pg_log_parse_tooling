@@ -1,7 +1,8 @@
 .PHONY: pg_csv_log_parser
 
-pg_csv_log_parser: pg_csv_log_parser.pm
-	(eval $$(perl -I ~/perl5/lib/perl5/ -Mlocal::lib); ./pg_csv_log_parser.pm)
+pg_csv_log_parser: pg_csv_log_parser_tests.pm
+	(eval $$(perl -I ~/perl5/lib/perl5/ -Mlocal::lib); ./pg_csv_log_parser_tests.pm)
+
 # Copyright 2012 Romeu Moura
 # This file is part of pg_log_parse_tooling. pg_Log_Parse_Tooling is
 # free software: you can redistribute it and/or modify it under the
