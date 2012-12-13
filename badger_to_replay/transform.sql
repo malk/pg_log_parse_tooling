@@ -13,4 +13,4 @@ COPY (SELECT
         sql_state_code, message, detail, hint, internal_query,
         internal_query_pos, context, query, query_pos, location
       FROM badger_log ORDER BY log_time, session_line_num)
-  TO '/tmp_replay.csv' WITH CSV;
+  TO '/tmp/replay.csv' WITH CSV;
