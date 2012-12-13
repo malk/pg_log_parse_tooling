@@ -61,13 +61,14 @@ sub has_table {
 	return sub {
 		my $x = shift;
 		foreach my $field (@fields) {
-			return 1 if $x->[$field]
-				&& $x->[$field] ~~ @$patterns;
+			if ($x->[$field]) {
+				foreach my $pattern (@$patterns) {
+					return 1 if $x->[$field] =~ $pattern;
+				}
+			}
 		}
 		return 0;
 	};
 }
-
-
 
 1;
